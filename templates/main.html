@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        
+        {% comment %} import app_name and page title from the view {% endcomment %}
+        <title>{{ app_name }} - {{ title }}</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        {% comment %} Favicons {% endcomment %}
+        <link href="{% static "assets/logo.png" %}" rel="icon">
+        <link href="{% static "assets/logo.png" %}" rel="apple-touch-icon">
+
+        {% comment %} Google Fonts Block {% endcomment %}
+        {% block google_fonts %}{% endblock google_fonts %}
+
+        {% comment %} Vendor CSS Files Block {% endcomment %}
+        {% block vendor_css_files %}{% endblock vendor_css_files %}
+        <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" rel="stylesheet" />
+
+
+        {% comment %} Template Main CSS Files Block {% endcomment %}
+        {% block template_main_css_file %}{% endblock template_main_css_file %}
+
+    </head>
+
+    <body>
+
+        {% comment %} template main section block {% endcomment %}
+        {% block template_main_section %}{% endblock template_main_section %}
+        
+
+        {% comment %} template footer section block {% endcomment %}
+        {% block template_footer_section %}{% endblock template_footer_section %}
+
+
+        {% comment %} template arrow up short block {% endcomment %}
+        {% block template_arrow_up_short_section %}{% endblock template_arrow_up_short_section %}
+
+
+        {% comment %} vendor js files block {% endcomment %}
+        {% block vendor_js_files %}{% endblock vendor_js_files %}
+
+
+        {% comment %} template main js files blcok {% endcomment %}
+        {% block template_main_js_file %}{% endblock template_main_js_file %}
+        <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags %}
+                        {% if message.tags == 'success' %}
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.success('{{ message }}');
+                        {% elif message.tags == 'error' %}
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.error('{{ message }}');
+                        {% elif message.tags == 'warning' %}
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.warning('{{ message }}');
+                        {% elif message.tags == 'info' %}
+                            alertify.set('notifier', 'position', 'top-right');
+                            alertify.message('{{ message }}');
+                        {% endif %}
+                    {% else %}
+                        // Handle messages without tags (default to error or customize as needed)
+                        alertify.set('notifier', 'position', 'top-right');
+                        alertify.error('{{ message }}');
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        
+        </script>
+    </body>
+
+</html>

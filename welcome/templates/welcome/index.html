@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block google_fonts %}
+
+{% include "welcome/includes/google-fonts.html" %}
+
+{% endblock google_fonts %}
+
+
+{% block vendor_css_files %}
+
+{% include "welcome/includes/vendor-css.html" %}
+
+{% endblock vendor_css_files %}
+
+
+{% block template_main_css_file %}
+
+{% include "welcome/includes/main-css.html" %}
+
+{% endblock template_main_css_file %}
+
+
+{% block template_main_section %}
+
+{% include "welcome/includes/sections/header.html" %}
+{% include "welcome/includes/sections/hero-section.html" %}
+
+
+<main id="main">
+
+  {% include "welcome/includes/sections/about-us.html" %}
+
+  {% include "welcome/includes/sections/why-us.html" %}
+
+  {% include "welcome/includes/sections/services.html" %}
+
+  {% include "welcome/includes/sections/cta.html" %}
+
+  {% include "welcome/includes/sections/team.html" %}
+
+  {% include "welcome/includes/sections/faq.html" %}
+
+  {% include "welcome/includes/sections/contact.html" %}
+</main>
+
+
+{% endblock template_main_section %}
+
+
+
+{% block template_footer_section %}
+
+{% include "welcome/includes/sections/footer.html" %}
+
+{% endblock template_footer_section %}
+
+
+
+{% block template_arrow_up_short_section %}
+
+{% include "welcome/includes/sections/arrow_up_short.html" %}
+
+{% endblock template_arrow_up_short_section %}
+
+
+
+{% block vendor_js_files %}
+
+{% include "welcome/includes/vendor-js.html" %}
+
+{% endblock vendor_js_files %}
+
+
+
+{% block template_main_js_file %}
+
+<script src="{% static "welcome/js/index.js" %}"></script>
+
+{% endblock template_main_js_file %}

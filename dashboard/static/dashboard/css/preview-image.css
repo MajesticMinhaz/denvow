@@ -1,0 +1,7 @@
+
+.table-preview-image {
+    width: 50px;  /* Adjust the width as needed */
+    height: 50px; /* This maintains the aspect ratio */
+    border-radius: 5px;  /* Optional: Add border-radius for a rounded look */
+}
+

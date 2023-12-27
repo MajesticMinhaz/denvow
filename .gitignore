@@ -1,0 +1,11 @@
+.idea/
+.env
+venv/
+env/
+__pycache__/
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+database/
+staticfiles/

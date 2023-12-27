@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+
+{% block google_fonts %}
+
+{% include "accounts/includes/common/google-fonts.html" %}
+
+{% endblock google_fonts %}
+
+
+{% block vendor_css_files %}
+
+{% include "accounts/includes/common/vendor-css.html" %}
+
+{% endblock vendor_css_files %}
+
+
+
+{% block template_main_css_file %}
+
+{% include "accounts/includes/common/main-css.html" %}
+
+{% endblock template_main_css_file %}
+
+
+
+{% block template_main_section %}
+
+<div class="main">
+{% block auth_form_block %}{% endblock auth_form_block %}
+</div>
+
+{% endblock template_main_section %}
+
+
+{% block vendor_js_files %}
+
+{% include "accounts/includes/common/vendor-js.html" %}
+
+{% endblock vendor_js_files %}

@@ -1,0 +1,45 @@
+<!-- ======= Team Section ======= -->
+<section id="team" class="team section-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Team</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="row">
+            
+            {% for item in items %}
+            <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter }}00">
+        
+                <div class="member d-flex align-items-start">
+        
+                    <div class="pic"><img src="{{ item.profile.profile_pic.url }}" class="img-fluid" alt="{{ item.profile.user.first_name }} {{ item.profile.user.last_name }}"></div>
+        
+                    <div class="member-info">
+        
+                        <h4>{{ item.profile.user.first_name }} {{ item.profile.user.last_name }}</h4>
+        
+                        <span>{% if item.profile.job_title %}{{ item.profile.job_title }}{% endif %}</span>
+        
+                        <p>{% if item.profile.about %}{{ item.profile.about }}{% endif %}</p>
+        
+                        <div class="social">
+        
+                            <a href="{% if user.profile.twitter %}{{ user.profile.twitter }}{% else %}https://twitter.com/{% endif %}" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="{% if user.profile.facebook %}{{ user.profile.facebook }}{% else %}https://facebook.com/{% endif %}" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="{% if user.profile.instagram %}{{ user.profile.instagram }}{% else %}https://instagram.com/{% endif %}" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% else %}https://linkedin.com/{% endif %}" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        
+                        </div>
+        
+                    </div>
+                
+                </div>
+        
+            </div>
+            {% endfor %}
+        
+
+        </div>
+    </div>
+</section>
+<!-- End Team Section -->

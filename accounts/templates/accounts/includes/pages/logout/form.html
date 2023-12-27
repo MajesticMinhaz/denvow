@@ -1,0 +1,25 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!-- Sing Out  Form -->
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{% static "accounts/img/signin-image.jpg" %}" alt="signin image"></figure>
+            </div>
+            <div class="signin-form">
+                <h2 class="form-title">Sign Out</h2>
+                <p>Are you sure you want to sign out?</p>
+                <form method="POST" class="register-form" id="login-form" action="{% url "account_logout" %}">
+                    {% csrf_token %}
+
+                    <p>{{ form.message }}</p>
+                    <div class="form-group form-button">
+                        <input type="submit" name="signout" id="signout" class="form-submit" value="Sign Out"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

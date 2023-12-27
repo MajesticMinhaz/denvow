@@ -1,0 +1,81 @@
+
+{% extends "dashboard/includes/common/page-structure.html" %}
+
+{% load custom_filters %}
+
+
+{% block page-content %}
+
+<section class="section">
+    <div class="row">
+        <div class="col-12">
+            <!-- Export CSV and Print Buttons -->
+            <div class="mb-3">
+                <button class="btn btn-success disabled" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Export CSV">
+                    <i class="bi bi-file-earmark-spreadsheet"></i>
+                </button>
+
+                <button class="btn btn-info disabled" onclick="window.print()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Print">
+                    <i class="bi bi-printer"></i>
+                </button>
+
+
+                {% with create_url=create_url %}
+
+                    <a href="{% url create_url %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add {{ title }}"><i class="bi bi-plus"></i></a>
+
+                {% endwith %}
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ title }}</h5>
+                    <div class="table-responsive">
+                        <table class="table table-borderless datatable" id="datatable">
+                            <thead>
+                                <tr class="text-center">
+                                    {% for field in model_fields %}
+                                    <th scope="col" class="small fst">{{ field.verbose_name|title }}</th>
+                                    {% endfor %}
+                                    <th scope="col" class="small fst">Edit</th>
+                                    <th scope="col" class="small fst">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in object_list %}
+                                <tr>
+                                    {% for field in model_fields %}
+                                        {% if field.name == 'id' or field.name == 'name' %}
+                                            <td class="small fst-italic">{{ item|get_attribute:field.name|capfirst|truncatewords:3 }}</td>
+                                        {% elif field.name == 'image' %}
+                                            <th scope="row"><a href="{{ item.image.url|urlencode }}"><img src="{{ item.image.url }}" alt="{{ item.name }}" class="table-preview-image" /></a></th>
+                                        {% elif field.name == 'description' %}
+                                            <td class="small fst-italic">{{ item|get_attribute:field.name|capfirst|truncatewords:20 }}</td>
+                                        {% elif field.name == 'last_update' %}
+                                            <td class="text-muted small fst-italic">{{ item.last_update|timesince }} ago</td>
+                                        {% else %}
+                                            <td class="text-muted small fst-italic">{{ item|get_attribute:field.name }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% with update_url=update_url delete_url=delete_url %}
+                                        <th scope="row"><a href="{% url update_url item.pk %}" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></a></th>
+                                        <th scope="row"><a href="{% url delete_url item.pk %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></th>
+                                
+                                    {% endwith %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock page-content %}

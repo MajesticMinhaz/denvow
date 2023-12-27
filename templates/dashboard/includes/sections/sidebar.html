@@ -1,0 +1,73 @@
+{% comment %} -- ======= Sidebar ======= -- {% endcomment %}
+
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        {% for heading, menu_items in sidebar_data.items %}
+
+            <li class="nav-heading">{{ heading }}</li>
+
+            {% for menu in menu_items %}
+
+                <li class="nev-item">
+
+                    {% if menu.url %}
+
+                        {% if menu.url == 'profile' %}
+
+                            <a class="nav-link {% if menu.collapsed %}collapsed{% endif %}" href="{% url menu.url username=request.user.username %}">
+                        
+                        {% else %}
+
+                            <a class="nav-link {% if menu.collapsed %}collapsed{% endif %}" href="{% url menu.url %}">
+
+                        {% endif %}
+
+                    
+                    {% else %}
+
+                        <a class="nav-link {% if menu.collapsed %}collapsed{% endif %}" data-bs-target="#{{ menu.name|slugify }}" data-bs-toggle="collapse" href="#">
+
+                    {% endif %}
+
+
+                    <i class="{{ menu.icon }}"></i>
+                    <span>{{ menu.name }}</span>
+                    
+
+                    {% if menu.sections %}
+                    
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+
+                        <ul id="{{ menu.name|slugify }}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                            {% for sub_menu in menu.sections %}
+
+                                <li>
+                                    <a href="{% url sub_menu.url %}" class="{% if sub_menu.active %}active{% endif %}">
+                                    <i class="bi bi-circle"></i>
+                                    <span>{{ sub_menu.name }}</span>
+                                    </a>
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% else %}
+
+                        </a>
+                    
+                    {% endif %}
+
+                </li>
+        
+            {% endfor %}
+
+        {% endfor %}
+
+    </ul>
+
+</aside>

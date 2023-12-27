@@ -1,0 +1,38 @@
+/* const values */
+:root {
+    --dark-gray: #444444;
+    --light-gray: #7f89a140;
+    --sky-blue-0: #47b2e4;
+    --sky-blue-1: #73c5eb;
+    --sky-blue-2: #6bc1e9;
+    --sky-blue-3: #31a9e1;
+    --preloader-background-color: #37517e;
+    --header-background: #283a5ae6;
+
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    color: var(--dark-gray);
+}
+
+a {
+    color: var(--sky-blue-0);
+    text-decoration: none;
+
+}
+
+a:hover {
+    color: var(--sky-blue-1);
+    text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Jost", sans-serif;
+}

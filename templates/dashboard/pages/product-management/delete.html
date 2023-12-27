@@ -1,0 +1,34 @@
+
+{% extends "dashboard/includes/common/page-structure.html" %}
+
+
+{% block page-content %}
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="profile-edit pt-3">
+                        <!-- Delete Form -->
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <h2 class="text-center">{{ title }}</h2>
+                            <p class="text-center">Are you sure you want to delete {{ object.name }}?</p>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-danger m-4">Confirm</button>
+                                <a href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}#{% endif %}" class="btn btn-secondary m-4">Cancel</a>
+                            </div>
+
+                        </form>
+                        <!-- End Delete Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock page-content %}

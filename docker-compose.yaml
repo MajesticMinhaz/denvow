@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    container_name: denvow_db
+    environment:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - denvow_network
+    volumes:
+      - denvow_db_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: denvow_web
+    volumes:
+      - .:/usr/src/app
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate && 
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_HOST=db
+
+    depends_on:
+      - db
+    networks:
+      - denvow_network
+
+networks:
+  denvow_network:
+    driver: bridge
+
+volumes:
+  denvow_db_data:
